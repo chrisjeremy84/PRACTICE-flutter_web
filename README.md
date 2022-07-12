@@ -13,6 +13,19 @@ The project
 ### Target platform => WEB, Android, IOS, macOS
 
 
+### FEATURES TO TEST
+The following are the different features to be tested:
+
+- State Management
+- Web Development
+- Flutter Animation Concepts
+- Flutter Widget Testing
+- Firebase Function
+- Firebase Cloud Messaging
+- Firebase Dynamic Links
+- Firebase Testing
+
+
 
 
 ## Tech Stack
