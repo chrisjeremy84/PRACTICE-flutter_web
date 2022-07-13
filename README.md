@@ -28,6 +28,30 @@ The following are the different features to be tested:
 
 
 
+
+
+## UPDATES AND CHANGES
+
+### BRANCH RULES
+- Please update README file before integrating a feature.
+- If intergrating a feature fails, revert the branch.
+
+
+
+#### 13th JULY 2023
+
+- Beginning development on web design. This is efficient as it can give a completely different perspective in front-end designs.
+
+
+##### TASK
+- Get familiar with multiple web designs and layouts.
+- Implement firebase and test other firebase functionalities for a typical clone for a psyred website.
+- Must also create application logic before implementing firebase.
+- Intergrate atleast one API, example: location, jobs API, NFTs etc ...
+- Add atleast one feature in the application. example: URL shortner, file compressor.
+- Intergrate WEB 3.0
+
+
 ## Tech Stack
 
 **Client:** Flutter, Dart, Kotlin
