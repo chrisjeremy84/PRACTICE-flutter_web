@@ -35,12 +35,15 @@ The following are the different features to be tested:
 ### BRANCH RULES
 - Please update README file before integrating a feature.
 - If intergrating a feature fails, revert the branch.
+- If learning, you can update the file by writing the chapter completed with a strike through
+
 
 
 
 #### 13th JULY 2023
 
 - Beginning development on web design. This is efficient as it can give a completely different perspective in front-end designs.
+- Simultaneously testing the PROVIDER package to understand better state management. ~~Set State, StatefulBuilder, Provider~~
 
 
 ##### TASK
