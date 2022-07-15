@@ -43,7 +43,13 @@ The following are the different features to be tested:
 #### 13th JULY 2023
 
 - Beginning development on web design. This is efficient as it can give a completely different perspective in front-end designs.
-- Simultaneously testing the PROVIDER package to understand better state management. ~~Set State, StatefulBuilder, Provider~~
+
+
+#### 15th JULY 2023
+- Currently developing first flutter websites.
+- Able to import custom fonts
+- Layout is simplified for basic website development
+- Currently working on homescreen
 
 
 ##### TASK
