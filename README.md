@@ -51,6 +51,12 @@ The following are the different features to be tested:
 - Layout is simplified for basic website development
 - Currently working on homescreen
 
+#### 18th JULY 2022
+
+- Different sections were added to the homescreen
+- Deployed app to firebase project named -> PRACTICE! 
+- LINK -> https://practice-5a235.web.app/#/
+
 
 ##### TASK
 - Get familiar with multiple web designs and layouts.
