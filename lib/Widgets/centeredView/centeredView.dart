@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CenteredView extends StatelessWidget {
-  const CenteredView({Key? key}) : super(key: key);
+  final Widget? child;
+  const CenteredView({Key? key, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 40),
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1400),
+        child: child,
+      ),
+    );
   }
 }
