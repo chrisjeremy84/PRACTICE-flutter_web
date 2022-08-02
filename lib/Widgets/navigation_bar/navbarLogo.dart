@@ -10,8 +10,8 @@ class NavBarLogo extends StatelessWidget {
       height: 100,
       width: 200,
       child: ScreenTypeLayout(
-          tablet: Image.asset('logo.png', fit: BoxFit.contain),
-          mobile: Image.asset('logo_mobile.png', fit: BoxFit.contain)),
+          tablet: Image.asset('logo/logo.png', fit: BoxFit.contain),
+          mobile: Image.asset('logo/logo_mobile.png', fit: BoxFit.contain)),
     );
   }
 }

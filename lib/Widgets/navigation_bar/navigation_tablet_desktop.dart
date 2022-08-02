@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web/Screens/Login/login.dart';
+import 'package:flutter_web/routes/route_names.dart';
 
 import 'NavBarItem.dart';
 import 'navbarLogo.dart';
@@ -15,13 +17,18 @@ class NavigationTabletDesktop extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: const [
-            NavBarItem(title: "Home"),
+            NavBarItem(
+              title: "Home",
+              navigationPath: HomeRoute,
+            ),
             SizedBox(width: 60),
-            NavBarItem(title: "Products & Services"),
+            NavBarItem(
+                title: "Products & Services",
+                navigationPath: Product_ServicesRoute),
             SizedBox(width: 60),
-            NavBarItem(title: "Pricing"),
+            NavBarItem(title: "Pricing", navigationPath: PricingRoute),
             SizedBox(width: 60),
-            NavBarItem(title: "Login"),
+            NavBarItem(title: "Login", navigationPath: LoginRoute),
             SizedBox(width: 60),
           ],
         )
