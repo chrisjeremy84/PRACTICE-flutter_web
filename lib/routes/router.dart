@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_web/Screens/ErrorScreen/error.dart';
-import 'package:flutter_web/Screens/Login/login.dart';
-import 'package:flutter_web/Screens/Pricing/pricing.dart';
-import 'package:flutter_web/Screens/Product_Services/Product_Services.dart';
+import 'package:flutter_web/Screens/login_screen/login.dart';
+import 'package:flutter_web/Screens/pricing_screen/pricing.dart';
+import 'package:flutter_web/Screens/services_screen/Services_Screen.dart';
 import 'package:flutter_web/Screens/home_screen/homeScreen.dart';
 import './route_names.dart';
 
@@ -11,7 +11,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case HomeRoute:
       return _getPageRoute(HomeScreen());
-    case Product_ServicesRoute:
+    case ServicesRoute:
       return _getPageRoute((Product_Services()));
     case PricingRoute:
       return _getPageRoute(Pricing());

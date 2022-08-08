@@ -17,8 +17,7 @@ class NavigationDrawer extends StatelessWidget {
         children: const <Widget>[
           NavigationDrawerHeader(),
           DrawerItem("Home", Icons.house_rounded, HomeRoute),
-          DrawerItem("Product & Services", Icons.work_off_rounded,
-              Product_ServicesRoute),
+          DrawerItem("Services", Icons.work_off_rounded, ServicesRoute),
           DrawerItem("Pricing", Icons.euro_rounded, PricingRoute),
           DrawerItem("Login", Icons.play_for_work_rounded, LoginRoute)
         ],

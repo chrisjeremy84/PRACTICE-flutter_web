@@ -5,7 +5,7 @@ import 'package:flutter_web/routes/router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import '../../Widgets/navigation_bar/navigationBar.dart' as NVB;
 import '../../services/navigation_service.dart';
-import '../Navigation_Drawer/NavigationDrawe.dart';
+import '../Navigation_Drawer/NavigationDrawer.dart';
 import '../centeredView/centeredView.dart';
 
 class LayoutTemplate extends StatelessWidget {
