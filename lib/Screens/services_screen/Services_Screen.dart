@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import '../../Widgets/interactive_card/interactive_cards.dart';
+import '../../utils/product_services.dart';
 
 /*
 
@@ -15,6 +17,30 @@ class Product_Services extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        InteractiveCards(
+          image: cards[0].image!,
+          title: cards[0].title!,
+          description: cards[0].description!,
+        ),
+        InteractiveCards(
+          image: cards[1].image!,
+          title: cards[1].title!,
+          description: cards[1].description!,
+        ),
+        InteractiveCards(
+          image: cards[2].image!,
+          title: cards[2].title!,
+          description: cards[2].description!,
+        ),
+        InteractiveCards(
+          image: cards[3].image!,
+          title: cards[3].title!,
+          description: cards[3].description!,
+        )
+      ],
+    );
   }
 }

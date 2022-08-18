@@ -46,7 +46,7 @@ class CourseDetails extends StatelessWidget {
                       height: 0.9,
                       fontSize: titleSize),
                   textAlign: textAlignment),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Text(
                   "This is a web template to be used for online course platform. Topics and many other courses can be found course lists.",
                   style: TextStyle(fontSize: descriptionSize, height: 1.7),
