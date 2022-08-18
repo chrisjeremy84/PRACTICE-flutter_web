@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
 }
 
 //STEPS TO USE PROVIDER - SET MANAGEMENT PACKAGE
-
 //1 - Creating Provider
 class NumberOfClicks extends ChangeNotifier {
 //2 - Creating variable that is required throughout the app
@@ -63,30 +62,33 @@ class HomePage extends StatelessWidget {
     return StatefulBuilder(
         builder: (context, setState) => MaterialApp(
               title: "State management Test",
-              home: Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 0.8,
-                padding: EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.lightBlueAccent),
-                child: Center(
-                  child: Column(
-                    children: [
-                      Text("Number: $number"),
-                      SizedBox(height: 20.0),
-                      MaterialButton(
-                        onPressed: () {
-                          Provider.of<NumberOfClicks>(context, listen: false)
-                              .changeNumber(2);
-                        },
-                        color: Colors.blueAccent,
-                        hoverColor: Colors.amberAccent,
-                        child: Text("Increment",
-                            style: TextStyle(
-                                decoration: TextDecoration.none, fontSize: 18)),
-                      )
-                    ],
+              home: Padding(
+                padding: const EdgeInsets.all(100.0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.lightBlueAccent),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Text("Number: $number"),
+                        const SizedBox(height: 20.0),
+                        MaterialButton(
+                          onPressed: () {
+                            Provider.of<NumberOfClicks>(context, listen: false)
+                                .changeNumber(2);
+                          },
+                          color: Colors.blueAccent,
+                          hoverColor: Colors.amberAccent,
+                          child: const Text("Increment",
+                              style: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  fontSize: 18)),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

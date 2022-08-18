@@ -1,5 +1,5 @@
 
-# FLUTTER DEV TESTING
+# FLUTTER DEV TESTING --- RIVERPOD BRANCH
 
 ![Logo](https://th.bing.com/th/id/OIP.FX3yx5KS0fAJNDtGaSEdhwHaCE?pid=ImgDet&rs=1)
 
@@ -40,19 +40,11 @@ The following are the different features to be tested:
 
 
 
-#### 13th JULY 2023
-
-- Beginning development on web design. This is efficient as it can give a completely different perspective in front-end designs.
-- Simultaneously testing the PROVIDER package to understand better state management. ~~Set State, StatefulBuilder, Provider~~
+#### 18 th AUGUST 2022
 
 
 ##### TASK
-- Get familiar with multiple web designs and layouts.
-- Implement firebase and test other firebase functionalities for a typical clone for a psyred website.
-- Must also create application logic before implementing firebase.
-- Intergrate atleast one API, example: location, jobs API, NFTs etc ...
-- Add atleast one feature in the application. example: URL shortner, file compressor.
-- Intergrate WEB 3.0
+- Use this branch to practice and master Riverpod state management.
 
 
 ## Tech Stack
