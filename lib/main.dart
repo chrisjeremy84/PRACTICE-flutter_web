@@ -1,20 +1,17 @@
 import 'dart:js';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-      // 7 - We use the multi provider to access the provider created
-      // 8 - Must be called before the UI is rendered
-      MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-        create: (context) => NumberOfClicks(),
-      )
-    ],
-    child: const MyApp(),
-  ));
+/* IN THIS ATTEMPT, WE ARE RUNNING TESTING THE RIVERPOD PLUGIN
+
+ THE FOLLOWING ARE THE STEPS TO TAKE;
+ STEP 1 - Wrap the root widget with the 'ProviderScope()'
+
+ The ProviderScope will be in charge of all the states 
+ changed and created in  the application
+*/
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -33,65 +30,43 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//STEPS TO USE PROVIDER - SET MANAGEMENT PACKAGE
-//1 - Creating Provider
-class NumberOfClicks extends ChangeNotifier {
-//2 - Creating variable that is required throughout the app
-  int num;
-//3 - Initializing the variable
-  NumberOfClicks({this.num = 0});
-//4 - Add other functions that may change the provider
+/* STEP 2 - DECLARE PROVIDER
+This will typically be the object or the variable 
+that we be changed throughout the app.
 
-//5 - Use the getter to get the current value of the object
-  int get count => num;
-  void changeNumber(int newvalue) {
-    num = num + newvalue;
-//6 - We use the notify listener method
-    notifyListeners();
-  }
-}
+* NOTE
+The state will need to have an object type as
+every state required a provider to return a certain variable type.
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+* NOTE
+The ref parameter. It is used to access other providers
 
+*NOTE
+Providers are declared globally
+*/
+
+final numberProvider = Provider<int>((ref) {
+  return 41;
+});
+
+/*  STEP 3 - Extend the class with the ConsumerWidget
+    This will enable us to access the provider without 
+    the need of a builder. As builder's require the state 
+    to be listened to hence limiting possibilities.
+
+    ConsumerWidget decreases the ammount of codes written
+    
+     */
+class HomePage extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    //9 - You create a variable with the created provider variable
-    int number = Provider.of<NumberOfClicks>(context).count;
+  Widget build(BuildContext context, WidgetRef ref) {
+    /* STEP 4 - Listen to the provider
+    Using the ref parameter. The Provider becomes accessible
 
-    return StatefulBuilder(
-        builder: (context, setState) => MaterialApp(
-              title: "State management Test",
-              home: Padding(
-                padding: const EdgeInsets.all(100.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height * 0.8,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.lightBlueAccent),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Text("Number: $number"),
-                        const SizedBox(height: 20.0),
-                        MaterialButton(
-                          onPressed: () {
-                            Provider.of<NumberOfClicks>(context, listen: false)
-                                .changeNumber(2);
-                          },
-                          color: Colors.blueAccent,
-                          hoverColor: Colors.amberAccent,
-                          child: const Text("Increment",
-                              style: TextStyle(
-                                  decoration: TextDecoration.none,
-                                  fontSize: 18)),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ));
+
+     */
+    final number = ref.watch(numberProvider);
+
+    return Center(child: Text(number.toString()));
   }
 }

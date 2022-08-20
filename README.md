@@ -40,7 +40,18 @@ The following are the different features to be tested:
 
 
 
-#### 18 th AUGUST 2022
+#### 19th AUGUST 2022
+
+### Riverpod practice
+## Providers to practice
+
+- StateProvider
+- FutureProvider
+- StreamProvider
+- Provider
+- StateNotifierProvider
+- ChangeNotifierProvider
+- ScopedProvider
 
 
 ##### TASK
