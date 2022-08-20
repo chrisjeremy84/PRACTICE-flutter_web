@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/* STEP 2 - DECLARE PROVIDER
+/* STEP 2 - DECLARE STATE PROVIDER
 This will typically be the object or the variable 
 that we be changed throughout the app.
 
@@ -45,8 +45,8 @@ The ref parameter. It is used to access other providers
 Providers are declared globally
 */
 
-final numberProvider = Provider<int>((ref) {
-  return 41;
+final numberStateProvider = StateProvider((ref) {
+  return 0;
 });
 
 /*  STEP 3 - Extend the class with the ConsumerWidget
@@ -61,12 +61,34 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     /* STEP 4 - Listen to the provider
-    Using the ref parameter. The Provider becomes accessible
+    Using the ref parameter.
 
+    However the main difference with the basic provider
+    is that in this situation it will use the state notifier
+    it will also listen to the state.
 
      */
-    final number = ref.watch(numberProvider);
+    final number = ref
+        .watch(numberStateProvider.state)
+        .state; // Gets the current value of the state
 
-    return Center(child: Text(number.toString()));
+    return Center(
+        child: Row(
+      children: [
+        Text(number.toString()),
+        GestureDetector(
+          onTap: () {
+            ref
+                .read(numberStateProvider.state)
+                .state++; // gets the current state and updates the current states
+          },
+          child: Container(
+            alignment: Alignment.center,
+            color: Colors.green,
+            child: const Text('Increment'),
+          ),
+        )
+      ],
+    ));
   }
 }
