@@ -1,36 +1,21 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-/*
-STEP 1
-Create a class that extends the state notifier
-In this example we create a State that will hold a list of integers
- */
-class NumberNotifier extends StateNotifier<List<int>> {
-  /*
-  STEP 2
-  Initialize the class by using a constructor
-  Here we 
-   
-   */
-  NumberNotifier() : super([]);
+class NumbersProvider extends StateNotifier<List<int>> {
+  //Initialize class with empty list
+  NumbersProvider() : super([]);
 
-/*
-NOTE
-The state in a state notifier is immutable
-We should change the state in an immutable manner;
-STEP 3
-We can then create a start by creating 2 functions 
-that will help with change of the state
- */
+  /**
+   Since the state is immutable
+   -> We cannot add an NumberProvider.add
+   -> We make a new list adding the previous elements with the new ones
+   -> For this we use fucntions that contain the dart spread operator
+   */
+
   void add(int number) {
     state = [...state, number];
   }
 
   void delete(int number) {
-    state = [
-      for (final Loopnumber in state)
-        if (number != Loopnumber) Loopnumber,
-    ];
+    for (final loopnumber in state) loopnumber;
   }
 }

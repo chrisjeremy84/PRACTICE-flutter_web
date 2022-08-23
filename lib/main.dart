@@ -26,41 +26,47 @@ class MyApp extends StatelessWidget {
 
 /*
 - Step 4 -
-After creating the class
-We can then create our state notifier provider
-This state notifier provider should in this case
-return the state notifier class created
-
+// Finally, we are using StateNotifierProvider to allow the UI to interact with
+// our TodosNotifier class.
  */
-final numberProvider =
-    StateNotifierProvider<NumberNotifier, List>((ref) => NumberNotifier());
+final numberNotifierProvider =
+    StateNotifierProvider<NumbersProvider, List>((ref) => NumbersProvider());
 
 class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 /*
 - Step 5 - 
-After creating the State Notifier Provider
-We then watch it using out ref
- */
+We watch the provide and update the UI if the state has been changed
 
-    List Number = ref.watch(numberProvider);
+
+NOTE
+With the recent changes in the riverpod syntax
+We should listen to the state notifier as 
+-> ref.watch(NumberNotifierProvider)
+
+Instead of
+
+-> ref.watch(NumberNotifierProvider.state)
+
+ */
+    List _numbers = ref.watch(numberNotifierProvider);
+
+    //Returning the UI
     return Stack(
       children: [
         Container(
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return Text(Number[index].toString());
-            },
-            itemCount: Number.length,
-          ),
-        ),
-        const SizedBox(height: 5),
-        FloatingActionButton(onPressed: (() {
-          //We update the state by reading our provider instead of our consumer.
-          ref.read(numberProvider).add(5);
-          print(Number.toString());
-        }))
+            child: ListView.builder(
+          itemBuilder: ((context, index) =>
+              Text("${_numbers[index].toString()}")),
+          itemCount: _numbers.length,
+        )),
+        const SizedBox(height: 5, width: 4),
+        FloatingActionButton(onPressed: () {
+          //We finally use the StateNotifierProvider to interact with the class created
+          ref.read(numberNotifierProvider).add(6);
+          print(_numbers);
+        })
       ],
     );
   }
