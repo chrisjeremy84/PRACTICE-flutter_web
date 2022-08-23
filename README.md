@@ -1,5 +1,5 @@
 
-# FLUTTER DEV TESTING --- RIVERPOD BRANCH
+# BRANCH --- WEB.TODO
 
 ![Logo](https://th.bing.com/th/id/OIP.FX3yx5KS0fAJNDtGaSEdhwHaCE?pid=ImgDet&rs=1)
 
@@ -13,17 +13,9 @@ The project
 ### Target platform => WEB, Android, IOS, macOS
 
 
-### FEATURES TO TEST
-The following are the different features to be tested:
-
-- State Management
-- Web Development
-- Flutter Animation Concepts
-- Flutter Widget Testing
-- Firebase Function
-- Firebase Cloud Messaging
-- Firebase Dynamic Links
-- Firebase Testing
+### OBJECTIVE
+- Create a Todo application that respects the laws of state management
+- Use this project to get familiar with Riverpod state management
 
 
 
