@@ -1,23 +1,17 @@
+import 'dart:html';
 import 'dart:js';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'Providers/number_state.dart';
 
 void main() {
-/* IN THIS ATTEMPT, WE ARE RUNNING TESTING THE RIVERPOD PLUGIN
-
- THE FOLLOWING ARE THE STEPS TO TAKE;
- STEP 1 - Wrap the root widget with the 'ProviderScope()'
-
- The ProviderScope will be in charge of all the states 
- changed and created in  the application
-*/
+  //TESTING STATE NOTIFIER PROVIDER
   runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,65 +24,44 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/* STEP 2 - DECLARE STATE PROVIDER
-This will typically be the object or the variable 
-that we be changed throughout the app.
+/*
+- Step 4 -
+After creating the class
+We can then create our state notifier provider
+This state notifier provider should in this case
+return the state notifier class created
 
-* NOTE
-The state will need to have an object type as
-every state required a provider to return a certain variable type.
+ */
+final numberProvider =
+    StateNotifierProvider<NumberNotifier, List>((ref) => NumberNotifier());
 
-* NOTE
-The ref parameter. It is used to access other providers
-
-*NOTE
-Providers are declared globally
-*/
-
-final numberStateProvider = StateProvider((ref) {
-  return 0;
-});
-
-/*  STEP 3 - Extend the class with the ConsumerWidget
-    This will enable us to access the provider without 
-    the need of a builder. As builder's require the state 
-    to be listened to hence limiting possibilities.
-
-    ConsumerWidget decreases the ammount of codes written
-    
-     */
 class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /* STEP 4 - Listen to the provider
-    Using the ref parameter.
+/*
+- Step 5 - 
+After creating the State Notifier Provider
+We then watch it using out ref
+ */
 
-    However the main difference with the basic provider
-    is that in this situation it will use the state notifier
-    it will also listen to the state.
-
-     */
-    final number = ref
-        .watch(numberStateProvider.state)
-        .state; // Gets the current value of the state
-
-    return Center(
-        child: Row(
+    List Number = ref.watch(numberProvider);
+    return Stack(
       children: [
-        Text(number.toString()),
-        GestureDetector(
-          onTap: () {
-            ref
-                .read(numberStateProvider.state)
-                .state++; // gets the current state and updates the current states
-          },
-          child: Container(
-            alignment: Alignment.center,
-            color: Colors.green,
-            child: const Text('Increment'),
+        Container(
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              return Text(Number[index].toString());
+            },
+            itemCount: Number.length,
           ),
-        )
+        ),
+        const SizedBox(height: 5),
+        FloatingActionButton(onPressed: (() {
+          //We update the state by reading our provider instead of our consumer.
+          ref.read(numberProvider).add(5);
+          print(Number.toString());
+        }))
       ],
-    ));
+    );
   }
 }
