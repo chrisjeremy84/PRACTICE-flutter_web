@@ -1,17 +1,23 @@
-import 'dart:html';
-import 'dart:js';
+import 'dart:async';
+
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'providers/providers.dart';
 
 void main() {
-  //TESTING STATE NOTIFIER PROVIDER
+  //TESTING Flutter Hooks
+  // This example is a timer
   runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,49 +31,70 @@ class MyApp extends StatelessWidget {
 }
 
 /*
-~ STEP 5 ~
-We create our ChangeNotifierProvider which will enable
-the UI to interact with our Change Notifier class 
+To intergrate the use of flutter hooks;
+~ Step 1 ~
+Obviously we would have to add the depedency of flutter hooks
  */
 
-final _numberChangeNotifierProvider =
-    ChangeNotifierProvider<NumbersNotifier>((ref) {
-  return NumbersNotifier();
-});
-
-class HomePage extends ConsumerWidget {
+class HomePage extends StatefulWidget {
+  HomePage({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    /*
-          ~ STEP 6 ~
-          We listen to the changes from out ChangeNotifierProvider
-           */
-    final _number = ref.watch(_numberChangeNotifierProvider);
-    print(_number.numbers);
+  State<HomePage> createState() => _HomePageState();
+}
 
-    return Stack(
-      children: <Widget>[
-        ListView.builder(
-          itemBuilder: (context, index) {
-            /*
-          ~ STEP 7 ~
-          Render the List of integers to UI
-           */
-            return Text(_number.numbers[index].toString());
-          },
-          itemCount: _number.numbers.length,
-        ),
-        const SizedBox(height: 10, width: 10),
-        GestureDetector(
-          child: Material(child: Icon(Icons.add)),
-          onTap: () {
-            _number.addNumber(4);
-          },
-          onLongPress: () {
-            _number.addNumber(7);
-          },
-        )
-      ],
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: TimerHook(),
     );
   }
 }
+
+/*
+  ~ Step 2 ~
+  Create a class that extends the HookWidget
+   */
+class TimerHook extends HookWidget {
+  @override
+  Widget build(BuildContext context) {
+    /*
+  ~ Step 3 ~
+  the useState Hook will be our value notifier.
+  It will update the state as soon as the value changes
+
+  In this step we initialize it
+   */
+
+    final _numberNotifier = useState(0);
+
+    /*
+  ~ Step 4 ~
+  We then call the useEffect Hook which handles the normal setState and dispose
+
+  ~ NOTE ~
+  The way it works;
+
+  - We create a timer which updates the value by the second
+  - within the useEffect and will dispose the timer as the state ends
+   */
+    useEffect(() {
+      final Timer _timer = Timer.periodic(Duration(seconds: 1), (time) {
+        //Rememeber the created variable is a value notifier.
+        //So in order to use it, you must call its value
+        _numberNotifier.value = time.tick;
+      });
+
+      return _timer.cancel;
+    }, const []);
+    return Container(
+      //Rememeber the created variable is a value notifier.
+      //So in order to use it, you must call its value
+      child: Text(_numberNotifier.value.toString()),
+    );
+  }
+}
+/*
+~ NOTE ~
+Hooks can only be called from within a Build method
+ */

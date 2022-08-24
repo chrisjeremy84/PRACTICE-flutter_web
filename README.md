@@ -1,7 +1,7 @@
 
 # BRANCH --- WEB.TODO
 
-![Logo](https://th.bing.com/th/id/OIP.FX3yx5KS0fAJNDtGaSEdhwHaCE?pid=ImgDet&rs=1)
+![Logo](https://raw.githubusercontent.com/rrousselGit/flutter_hooks/master/packages/flutter_hooks/flutter-hook.svg?sanitize=true)
 
 The following repository is a testing field for 
 flutter web, desktop & mobile tools.
