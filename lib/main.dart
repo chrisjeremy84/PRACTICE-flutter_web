@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web/hook.dart';
 
 void main() {
   //TESTING Flutter Hooks
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: TimerHook(),
+      child: TimerCustomHook(),
     );
   }
 }
@@ -55,42 +56,16 @@ class _HomePageState extends State<HomePage> {
   ~ Step 2 ~
   Create a class that extends the HookWidget
    */
-class TimerHook extends HookWidget {
+
+class TimerCustomHook extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    /*
-  ~ Step 3 ~
-  the useState Hook will be our value notifier.
-  It will update the state as soon as the value changes
+    final number = useInfiniteTimer(context);
 
-  In this step we initialize it
-   */
-
-    final _numberNotifier = useState(0);
-
-    /*
-  ~ Step 4 ~
-  We then call the useEffect Hook which handles the normal setState and dispose
-
-  ~ NOTE ~
-  The way it works;
-
-  - We create a timer which updates the value by the second
-  - within the useEffect and will dispose the timer as the state ends
-   */
-    useEffect(() {
-      final Timer _timer = Timer.periodic(Duration(seconds: 1), (time) {
-        //Rememeber the created variable is a value notifier.
-        //So in order to use it, you must call its value
-        _numberNotifier.value = time.tick;
-      });
-
-      return _timer.cancel;
-    }, const []);
     return Container(
       //Rememeber the created variable is a value notifier.
       //So in order to use it, you must call its value
-      child: Text(_numberNotifier.value.toString()),
+      child: Text(number.toString(), style: TextStyle(color: Colors.blue)),
     );
   }
 }
