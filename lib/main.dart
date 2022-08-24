@@ -66,7 +66,7 @@ class TimerHook extends HookWidget {
   In this step we initialize it
    */
 
-    final _numberNotifier = useState(0);
+    final _number = useState(0);
 
     /*
   ~ Step 4 ~
@@ -78,23 +78,17 @@ class TimerHook extends HookWidget {
   - We create a timer which updates the value by the second
   - within the useEffect and will dispose the timer as the state ends
    */
+
     useEffect(() {
-      final Timer _timer = Timer.periodic(Duration(seconds: 1), (time) {
-        //Rememeber the created variable is a value notifier.
-        //So in order to use it, you must call its value
-        _numberNotifier.value = time.tick;
+      final Timer _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+        _number.value = _.tick;
       });
 
-      return _timer.cancel;
+      //We have to dispose of the timer
     }, const []);
+
     return Container(
-      //Rememeber the created variable is a value notifier.
-      //So in order to use it, you must call its value
-      child: Text(_numberNotifier.value.toString()),
+      child: Text('Seconds: ${_number.value.toString()}'),
     );
   }
 }
-/*
-~ NOTE ~
-Hooks can only be called from within a Build method
- */
