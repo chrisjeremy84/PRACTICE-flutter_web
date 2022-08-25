@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:js';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,10 +33,10 @@ class _MyAppState extends State<MyApp> {
 }
 
 /*
-To intergrate the use of flutter hooks;
-~ Step 1 ~
-Obviously we would have to add the depedency of flutter hooks
- */
+  To intergrate the use of flutter hooks;
+  ~ Step 1 ~
+  Obviously we would have to add the depedency of flutter hooks
+  */
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -58,18 +59,25 @@ class _HomePageState extends State<HomePage> {
    */
 
 class TimerCustomHook extends HookWidget {
+  const TimerCustomHook({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final number = useInfiniteTimer(context);
-
+    /*
+  ~ Step 8 ~
+  Import the created class and use the useMethod created
+  that are updating according to the state.
+   */
+    final number = useTimerHook(context);
     return Container(
-      //Rememeber the created variable is a value notifier.
-      //So in order to use it, you must call its value
-      child: Text(number.toString(), style: TextStyle(color: Colors.blue)),
+      child: Text(
+        number.toString(),
+        style: TextStyle(color: Colors.blue),
+      ),
     );
   }
 }
-/*
-~ NOTE ~
-Hooks can only be called from within a Build method
- */
+  /*
+  ~ NOTE ~
+  Hooks can only be called from within a Build method
+  */
