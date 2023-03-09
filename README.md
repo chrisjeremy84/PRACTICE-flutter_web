@@ -1,19 +1,20 @@
 
-# FLUTTER DEV TESTING
+# FLUTTER IOS TESTING
 
 ![Logo](https://th.bing.com/th/id/OIP.FX3yx5KS0fAJNDtGaSEdhwHaCE?pid=ImgDet&rs=1)
 
-The following repository is a testing field for 
-flutter web, desktop & mobile tools.
-The purpose of this repository is to get as familiar
-as possible with the flutter framework.
+# BRANCH:  IOS.TEST
 
-The project 
+# OBJECTIVE
+
+Testing  Riverpod, Firebase Authentication, Flutter,Go Router
+Source [https://www.youtube.com/watch?v=DVgjysZF82k&ab_channel=TemiCodes]
+
 ### Development time => n/a
-### Target platform => WEB, Android, IOS, macOS
+### Target platform => IOS
 
 
-### FEATURES TO TEST
+#### FEATURES TO TEST
 The following are the different features to be tested:
 
 - State Management
